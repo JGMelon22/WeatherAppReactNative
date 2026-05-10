@@ -1,4 +1,4 @@
-import { ActivityIndicator, StatusBar, StyleSheet, Text } from "react-native";
+import { ActivityIndicator, Appearance, StatusBar, StyleSheet, Text, useColorScheme } from "react-native";
 import { colors } from "./src/theme/colors";
 import { useState } from "react";
 import { Weather } from "./src/types/weather";
@@ -13,6 +13,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const colorScheme = useColorScheme();
+  
   const handleSearch = async (city: string) => {
     if (!city) {
       setError('Please enter a city name');
