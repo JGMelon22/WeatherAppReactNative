@@ -43,6 +43,7 @@ If you're having issues getting the above steps to work, see the [Troubleshootin
 
 To learn more about React Native, take a look at the following resources:
 
+- [High-Performance Caching in React Native with MMKV (Using TypeScript)](https://medium.com/@buseapaydin8/high-performance-caching-in-react-native-with-mmkv-using-typescript-eb9fb8521d86)
 - [React Native Website](https://reactnative.dev) - learn more about React Native.
 - [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
