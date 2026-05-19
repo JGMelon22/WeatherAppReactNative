@@ -1,4 +1,4 @@
-import { ActivityIndicator, Appearance, StatusBar, StyleSheet, Text, useColorScheme } from "react-native";
+import { ActivityIndicator, StatusBar, StyleSheet, Text } from "react-native";
 import { colors } from "./src/theme/colors";
 import { useState } from "react";
 import { Weather } from "./src/types/weather";
@@ -7,14 +7,13 @@ import WeatherCard from "./src/components/WeatherCard";
 import ErrorMessage from "./src/components/ErrorMessage";
 import SearchBar from "./src/components/SearchBar";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getCache, setCache } from "./src/config/storage";
 
 function App() {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const colorScheme = useColorScheme();
-  
   const handleSearch = async (city: string) => {
     if (!city) {
       setError('Please enter a city name');
@@ -27,8 +26,16 @@ function App() {
     setWeather(null);
 
     try {
+      const cached = getCache<Weather>(city);
+      if (cached) {
+        setWeather(cached)
+        setLoading(false);
+        return;
+      }
+
       const data = await fetchWeather(city);
       setWeather(data);
+      setCache(city, data)
     } catch (error) {
       if (error instanceof CityNoFoundError) {
         setError('City not found. Try another name.')
