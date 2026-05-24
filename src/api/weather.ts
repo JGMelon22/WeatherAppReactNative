@@ -1,4 +1,4 @@
-import { OPENWEATHER_API_KEY } from "../../config";
+import { OPENWEATHER_API_KEY } from "../config";
 import { Weather } from "../types/weather";
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
